@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Familien-Wichtelspiel</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1608912142368-a8fbbec5c2e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080');
+      background-size: cover;
+      color: #fff;
+    }
+    header {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    form {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #ff6347;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff4500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Familien-Wichtelspiel</h1>
+    <p>Melde dich an und lass dich überraschen, wen du beschenkst!</p>
+  </header>
+  <main>
+    <form id="wichtelForm">
+      <input type="text" id="name" placeholder="Dein Name" required>
+      <button type="submit">Wichtelpartner ziehen</button>
+    </form>
+    <div id="result" style="display:none; margin-top:20px;">
+      <h2>Dein Wichtelpartner ist:</h2>
+      <p id="partnerName"></p>
+    </div>
+  </main>
+  <script>
+    const participants = ["Mama", "Papa", "Michele", "Zoe", "Finn", "Leif", "Jette", "Ylvi", "Anouk", "Lys", "Bo", "Oma"];
+
+    document.getElementById('wichtelForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      if (!participants.includes(name)) {
+        alert('Name nicht in der Teilnehmerliste.');
+        return;
+      }
+      const available = participants.filter(participant => participant !== name);
+      const partner = available[Math.floor(Math.random() * available.length)];
+      document.getElementById('partnerName').innerText = partner;
+      document.getElementById('result').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
