@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weihnachts-Wichtelspiel der Familie Burtscheidt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #b22222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #b22222;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #ffe4e1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #b22222;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #228b22;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #196619;
+        }
+        .btn:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #b22222;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        🎄 Weihnachts-Wichtelspiel der Familie Burtscheidt 🎁
+    </header>
+    <div class="container">
+        <h2>Teilnehmer</h2>
+        <ul id="participants-list">
+            <li>Oma</li>
+            <li>Mama</li>
+            <li>Papa</li>
+            <li>Michele</li>
+            <li>Zoe</li>
+            <li>Leif</li>
+            <li>Finn</li>
+            <li>Jette</li>
+            <li>Ylvi</li>
+            <li>Anouk</li>
+            <li>Lys</li>
+            <li>Bo</li>
+        </ul>
+        <button class="btn" id="drawButton" onclick="drawNames()">Wichtelpartner Auslosen</button>
+        <div class="result" id="result"></div>
+    </div>
+    <div class="footer">
+        Frohe Weihnachten und viel Spaß beim Wichteln! 🎅
+    </div>
+
+    <script>
+        function drawNames() {
+            const participants = ["Oma", "Mama", "Papa", "Michele", "Zoe", "Leif", "Finn", "Jette", "Ylvi", "Anouk", "Lys", "Bo"];
+            let shuffled = participants.slice().sort(() => Math.random() - 0.5);
+            
+            let resultText = "<ul>";
+            for (let i = 0; i < participants.length; i++) {
+                let next = (i + 1) % participants.length;
+                resultText += `<li>${shuffled[i]} → ${shuffled[next]}</li>`;
+            }
+            resultText += "</ul>";
+
+            document.getElementById("result").innerHTML = resultText;
+            document.getElementById("drawButton").disabled = true;
+        }
+    </script>
+</body>
+</html>
